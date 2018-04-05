@@ -18,6 +18,7 @@
 		4DB4666C2075778600B251F6 /* CoreMLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4666B2075778600B251F6 /* CoreMLViewController.swift */; };
 		4DB4666E2075779400B251F6 /* MagicPencilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4666D2075779400B251F6 /* MagicPencilViewController.swift */; };
 		4DB46670207577A000B251F6 /* SimpleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4666F207577A000B251F6 /* SimpleViewController.swift */; };
+		4DEA91FC2075AD4600673B1D /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEA91FB2075AD4600673B1D /* LaunchViewController.swift */; };
 		4DF09C6420758B2600CC6BB7 /* paperPlane.scn in Resources */ = {isa = PBXBuildFile; fileRef = 4DF09C6320758B2600CC6BB7 /* paperPlane.scn */; };
 		4DF09C6620758B4600CC6BB7 /* car.dae in Resources */ = {isa = PBXBuildFile; fileRef = 4DF09C6520758B4600CC6BB7 /* car.dae */; };
 		4DF09C682075901400CC6BB7 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF09C672075901400CC6BB7 /* Navigator.swift */; };
@@ -29,7 +30,6 @@
 		4DF09C8920759E0B00CC6BB7 /* FocusSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF09C7520759E0B00CC6BB7 /* FocusSquare.swift */; };
 		4DF09C8A20759E0B00CC6BB7 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF09C7620759E0B00CC6BB7 /* Plane.swift */; };
 		4DF09C8B20759E0B00CC6BB7 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DF09C7820759E0B00CC6BB7 /* Models.scnassets */; };
-		4DF09C8C20759E0B00CC6BB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DF09C7920759E0B00CC6BB7 /* LaunchScreen.storyboard */; };
 		4DF09C8D20759E0B00CC6BB7 /* wood-diffuse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DF09C7B20759E0B00CC6BB7 /* wood-diffuse.jpg */; };
 		4DF09C8E20759E0B00CC6BB7 /* wood-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF09C7C20759E0B00CC6BB7 /* wood-normal.png */; };
 		4DF09C8F20759E0B00CC6BB7 /* wood-specular.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4DF09C7D20759E0B00CC6BB7 /* wood-specular.jpg */; };
@@ -76,6 +76,7 @@
 		4DB4666B2075778600B251F6 /* CoreMLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLViewController.swift; sourceTree = "<group>"; };
 		4DB4666D2075779400B251F6 /* MagicPencilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicPencilViewController.swift; sourceTree = "<group>"; };
 		4DB4666F207577A000B251F6 /* SimpleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleViewController.swift; sourceTree = "<group>"; };
+		4DEA91FB2075AD4600673B1D /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		4DF09C6320758B2600CC6BB7 /* paperPlane.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = paperPlane.scn; sourceTree = "<group>"; };
 		4DF09C6520758B4600CC6BB7 /* car.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = car.dae; sourceTree = "<group>"; };
 		4DF09C672075901400CC6BB7 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
@@ -87,7 +88,6 @@
 		4DF09C7520759E0B00CC6BB7 /* FocusSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusSquare.swift; sourceTree = "<group>"; };
 		4DF09C7620759E0B00CC6BB7 /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		4DF09C7820759E0B00CC6BB7 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
-		4DF09C7920759E0B00CC6BB7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DF09C7B20759E0B00CC6BB7 /* wood-diffuse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wood-diffuse.jpg"; sourceTree = "<group>"; };
 		4DF09C7C20759E0B00CC6BB7 /* wood-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood-normal.png"; sourceTree = "<group>"; };
 		4DF09C7D20759E0B00CC6BB7 /* wood-specular.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wood-specular.jpg"; sourceTree = "<group>"; };
@@ -156,6 +156,7 @@
 				4DB4663920756F9500B251F6 /* Main.storyboard */,
 				4DB4663E20756F9900B251F6 /* LaunchScreen.storyboard */,
 				4DB4664120756F9900B251F6 /* Info.plist */,
+				4DEA91FB2075AD4600673B1D /* LaunchViewController.swift */,
 			);
 			path = "ARKit-Demo";
 			sourceTree = "<group>";
@@ -283,7 +284,6 @@
 			isa = PBXGroup;
 			children = (
 				4DF09C7820759E0B00CC6BB7 /* Models.scnassets */,
-				4DF09C7920759E0B00CC6BB7 /* LaunchScreen.storyboard */,
 				4DF09C7A20759E0B00CC6BB7 /* wood-matrial */,
 				4DF09C7E20759E0B00CC6BB7 /* Assets.xcassets */,
 				4DF09C8020759E0B00CC6BB7 /* Info.plist */,
@@ -418,7 +418,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DB4663620756F9500B251F6 /* art.scnassets in Resources */,
-				4DF09C8C20759E0B00CC6BB7 /* LaunchScreen.storyboard in Resources */,
 				4DB4664020756F9900B251F6 /* LaunchScreen.storyboard in Resources */,
 				4DF09C8F20759E0B00CC6BB7 /* wood-specular.jpg in Resources */,
 				4DF09C8D20759E0B00CC6BB7 /* wood-diffuse.jpg in Resources */,
@@ -483,6 +482,7 @@
 				4DF09C8720759E0B00CC6BB7 /* PointNode.swift in Sources */,
 				4DF09C8820759E0B00CC6BB7 /* FocusSquareSegment.swift in Sources */,
 				4DF09C9620759E0B00CC6BB7 /* SceneExtensions.swift in Sources */,
+				4DEA91FC2075AD4600673B1D /* LaunchViewController.swift in Sources */,
 				4DF09C8920759E0B00CC6BB7 /* FocusSquare.swift in Sources */,
 				4DB4663420756F9500B251F6 /* AppDelegate.swift in Sources */,
 				4DB4666C2075778600B251F6 /* CoreMLViewController.swift in Sources */,
