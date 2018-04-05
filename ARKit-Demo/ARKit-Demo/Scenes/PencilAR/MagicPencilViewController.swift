@@ -393,8 +393,12 @@ class MagicPencilViewController: UIViewController {
         let tapLocation = recognizer.location(in: view)
 
         // Set up the rect in the image in view coordinate space that we will track
-        let trackImageBoundingBoxOrigin = CGPoint(x: tapLocation.x - trackImageSize / 2, y: tapLocation.y - trackImageSize / 2)
-        trackImageBoundingBox = CGRect(origin: trackImageBoundingBoxOrigin, size: CGSize(width: trackImageSize, height: trackImageSize))
+        let trackImageBoundingBoxOrigin = CGPoint(x: tapLocation.x - trackImageSize / 2,
+                                                  y: tapLocation.y - trackImageSize / 2)
+
+        trackImageBoundingBox = CGRect(origin: trackImageBoundingBoxOrigin,
+                                       size: CGSize(width: trackImageSize,
+                                                    height: trackImageSize))
 
         let t = CGAffineTransform(scaleX: 1.0 / self.view.frame.size.width, y: 1.0 / self.view.frame.size.height)
         let normalizedTrackImageBoundingBox = trackImageBoundingBox!.applying(t)
