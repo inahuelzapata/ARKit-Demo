@@ -7,11 +7,13 @@
 //
 
 import ARKit
+import Foundation
 import SceneKit
 import UIKit
 import Vision
 
-class MagicPencilViewController: UIViewController {
+class MagicPencilViewController: UIViewController, ARSCNViewDelegate {
+
     // MARK: - ARKit Config Properties
 
     var screenCenter: CGPoint?
@@ -73,7 +75,7 @@ class MagicPencilViewController: UIViewController {
 
         setupUIControls()
         setupScene()
-
+        self.navigationController?.isNavigationBarHidden = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         view.addGestureRecognizer(tapGestureRecognizer)
     }
@@ -85,11 +87,12 @@ class MagicPencilViewController: UIViewController {
         UIApplication.shared.isIdleTimerDisabled = true
 
         if ARWorldTrackingConfiguration.isSupported {
+            // Start the ARSession.
             resetTracking()
         } else {
             // This device does not support 6DOF world tracking.
-            let sessionErrorMsg = "World tracking is only available on iOS devices with A9 processor or newer. " +
-                "Please quit the application."
+            let sessionErrorMsg = "This app requires world tracking. World tracking is only available on iOS devices with A9 processor or newer. " +
+            "Please quit the application."
             displayErrorMessage(title: "Unsupported platform", message: sessionErrorMsg, allowRestart: false)
         }
     }
@@ -136,14 +139,13 @@ class MagicPencilViewController: UIViewController {
 
         // If light estimation is enabled, update the intensity of the model's lights and the environment map
         if let lightEstimate = self.session.currentFrame?.lightEstimate {
-            self.sceneView.scene.enableEnvironmentMapWithIntensity(lightEstimate.ambientIntensity / 40,
-                                                                   queue: serialQueue)
+            self.sceneView.scene.enableEnvironmentMapWithIntensity(lightEstimate.ambientIntensity / 40, queue: serialQueue)
         } else {
             self.sceneView.scene.enableEnvironmentMapWithIntensity(40, queue: serialQueue)
         }
 
         // Setup a dot that represents the virtual pen's tippoint
-        if self.virtualPenTip == nil {
+        if (self.virtualPenTip == nil) {
             self.virtualPenTip = PointNode(color: UIColor.red)
             self.sceneView.scene.rootNode.addChildNode(self.virtualPenTip!)
         }
@@ -171,24 +173,26 @@ class MagicPencilViewController: UIViewController {
             self.virtualPenTip?.simdPosition = lastFingerWorldPos
 
             // Draw new point
-            if self.inDrawMode && !self.virtualObjectManager.pointNodeExistAt(pos: lastFingerWorldPos) {
+            if (self.inDrawMode && !self.virtualObjectManager.pointNodeExistAt(pos: lastFingerWorldPos)) {
                 let newPoint = PointNode()
                 self.sceneView.scene.rootNode.addChildNode(newPoint)
                 self.virtualObjectManager.loadVirtualObject(newPoint, to: lastFingerWorldPos)
             }
 
             // Convert drawing to 3D
-            if self.in3DMode {
+            if (self.in3DMode ) {
                 if self.trackImageInitialOrigin != nil {
                     DispatchQueue.main.async {
-                        let newH = 0.4 * (self.trackImageInitialOrigin!.y - self.trackImageBoundingBox!.origin.y) / self.sceneView.frame.height
+                        let newH = 0.4 *  (self.trackImageInitialOrigin!.y - self.trackImageBoundingBox!.origin.y) / self.sceneView.frame.height
                         self.virtualObjectManager.setNewHeight(newHeight: newH)
                     }
                 } else {
                     self.trackImageInitialOrigin = self.trackImageBoundingBox?.origin
                 }
             }
+
         }
+
     }
 
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
@@ -232,9 +236,7 @@ class MagicPencilViewController: UIViewController {
 
     func session(_ session: ARSession, didFailWithError error: Error) {
 
-        guard let arError = error as? ARError else {
-            return
-        }
+        guard let arError = error as? ARError else { return }
 
         let nsError = error as NSError
         var sessionErrorMsg = "\(nsError.localizedDescription) \(nsError.localizedFailureReason ?? "")"
@@ -328,12 +330,10 @@ class MagicPencilViewController: UIViewController {
     }
 
     func updateFocusSquare() {
-        guard let screenCenter = screenCenter else {
-            return
-        }
+        guard let screenCenter = screenCenter else { return }
 
         DispatchQueue.main.async {
-            if self.virtualObjectManager.pointNodes.isEmpty {
+            if self.virtualObjectManager.pointNodes.count > 0 {
                 self.focusSquare?.hide()
             } else {
                 self.focusSquare?.unhide()
@@ -344,9 +344,7 @@ class MagicPencilViewController: UIViewController {
                                                                                                        objectPos: self.focusSquare?.simdPosition)
             if let worldPos = worldPos {
                 self.serialQueue.async {
-                    self.focusSquare?.update(for: worldPos,
-                                             planeAnchor: planeAnchor,
-                                             camera: self.session.currentFrame?.camera)
+                    self.focusSquare?.update(for: worldPos, planeAnchor: planeAnchor, camera: self.session.currentFrame?.camera)
                 }
                 self.textManager.cancelScheduledMessage(forType: .focusSquare)
             }
@@ -393,24 +391,18 @@ class MagicPencilViewController: UIViewController {
         let tapLocation = recognizer.location(in: view)
 
         // Set up the rect in the image in view coordinate space that we will track
-        let trackImageBoundingBoxOrigin = CGPoint(x: tapLocation.x - trackImageSize / 2,
-                                                  y: tapLocation.y - trackImageSize / 2)
-
-        trackImageBoundingBox = CGRect(origin: trackImageBoundingBoxOrigin,
-                                       size: CGSize(width: trackImageSize,
-                                                    height: trackImageSize))
+        let trackImageBoundingBoxOrigin = CGPoint(x: tapLocation.x - trackImageSize / 2, y: tapLocation.y - trackImageSize / 2)
+        trackImageBoundingBox = CGRect(origin: trackImageBoundingBoxOrigin, size: CGSize(width: trackImageSize, height: trackImageSize))
 
         let t = CGAffineTransform(scaleX: 1.0 / self.view.frame.size.width, y: 1.0 / self.view.frame.size.height)
         let normalizedTrackImageBoundingBox = trackImageBoundingBox!.applying(t)
 
         // Transfrom the rect from view space to image space
-        guard let fromViewToCameraImageTransform = self.sceneView.session.currentFrame?.displayTransform(for: UIInterfaceOrientation.portrait,
-                                                                                                         viewportSize: self.sceneView.frame.size).inverted() else {
+        guard let fromViewToCameraImageTransform = self.sceneView.session.currentFrame?.displayTransform(for: UIInterfaceOrientation.portrait, viewportSize: self.sceneView.frame.size).inverted() else {
             return
         }
-        var trackImageBoundingBoxInImage = normalizedTrackImageBoundingBox.applying(fromViewToCameraImageTransform)
-        trackImageBoundingBoxInImage.origin.y = 1 - trackImageBoundingBoxInImage.origin.y
-        // Image space uses bottom left as origin while view space uses top left
+        var trackImageBoundingBoxInImage =  normalizedTrackImageBoundingBox.applying(fromViewToCameraImageTransform)
+        trackImageBoundingBoxInImage.origin.y = 1 - trackImageBoundingBoxInImage.origin.y   // Image space uses bottom left as origin while view space uses top left
 
         lastObservation = VNDetectedObjectObservation(boundingBox: trackImageBoundingBoxInImage)
 
@@ -445,56 +437,9 @@ class MagicPencilViewController: UIViewController {
 
             // Get the projection if the location of the tracked image from image space to the nearest detected plane
             if let trackImageOrigin = self.trackImageBoundingBox?.origin {
-                let point = CGPoint(x: trackImageOrigin.x - 20.0, y: trackImageOrigin.y + 40.0)
-                (self.lastFingerWorldPos, _, _) = self.virtualObjectManager.worldPositionFromScreenPosition(point,
-                                                                                                            in: self.sceneView,
-                                                                                                            objectPos: nil,
-                                                                                                            infinitePlane: false)
+                (self.lastFingerWorldPos, _, _) = self.virtualObjectManager.worldPositionFromScreenPosition(CGPoint(x: trackImageOrigin.x - 20.0, y: trackImageOrigin.y + 40.0), in: self.sceneView, objectPos: nil, infinitePlane: false)
             }
 
-        }
-    }
-}
-
-extension MagicPencilViewController: ARSCNViewDelegate {
-
-}
-
-extension MagicPencilViewController {
-    enum SegueIdentifier: String {
-        case showSettings
-    }
-
-    // MARK: - Interface Actions
-
-    @IBAction func restartExperience(_ sender: Any) {
-        guard restartExperienceButtonIsEnabled else {
-            return
-        }
-
-        DispatchQueue.main.async {
-            self.restartExperienceButtonIsEnabled = false
-
-            self.textManager.cancelAllScheduledMessages()
-            self.textManager.dismissPresentedAlert()
-            self.textManager.showMessage("STARTING A NEW SESSION")
-
-            self.virtualObjectManager.removeAllVirtualObjects()
-            self.focusSquare?.isHidden = true
-
-            self.resetTracking()
-
-            self.restartExperienceButton.setImage(#imageLiteral(resourceName: "restart"), for: [])
-
-            // Show the focus square after a short delay to ensure all plane anchors have been deleted.
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                self.setupFocusSquare()
-            })
-
-            // Disable Restart button for a while in order to give the session enough time to restart.
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
-                self.restartExperienceButtonIsEnabled = true
-            })
         }
     }
 }

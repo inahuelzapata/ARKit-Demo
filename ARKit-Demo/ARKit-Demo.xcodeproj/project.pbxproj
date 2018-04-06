@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0124E1692077024200F773AC /* MagicPencilViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0124E1682077024200F773AC /* MagicPencilViewController+Extension.swift */; };
 		4DB4663420756F9500B251F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4663320756F9500B251F6 /* AppDelegate.swift */; };
 		4DB4663620756F9500B251F6 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DB4663520756F9500B251F6 /* art.scnassets */; };
 		4DB4663820756F9500B251F6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4663720756F9500B251F6 /* MainViewController.swift */; };
@@ -59,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0124E1682077024200F773AC /* MagicPencilViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MagicPencilViewController+Extension.swift"; sourceTree = "<group>"; };
 		4DB4663020756F9500B251F6 /* ARKit-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARKit-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DB4663320756F9500B251F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DB4663520756F9500B251F6 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				4DF09C8120759E0B00CC6BB7 /* Utilities */,
 				4DF09C6F20759E0A00CC6BB7 /* Virtual Objects */,
 				4DB4666D2075779400B251F6 /* MagicPencilViewController.swift */,
+				0124E1682077024200F773AC /* MagicPencilViewController+Extension.swift */,
 			);
 			path = PencilAR;
 			sourceTree = "<group>";
@@ -460,7 +463,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -480,6 +483,7 @@
 				4DF09C8A20759E0B00CC6BB7 /* Plane.swift in Sources */,
 				4DF09C9420759E0B00CC6BB7 /* ARSCNView+HitTests.swift in Sources */,
 				4DF09C8720759E0B00CC6BB7 /* PointNode.swift in Sources */,
+				0124E1692077024200F773AC /* MagicPencilViewController+Extension.swift in Sources */,
 				4DF09C8820759E0B00CC6BB7 /* FocusSquareSegment.swift in Sources */,
 				4DF09C9620759E0B00CC6BB7 /* SceneExtensions.swift in Sources */,
 				4DEA91FC2075AD4600673B1D /* LaunchViewController.swift in Sources */,

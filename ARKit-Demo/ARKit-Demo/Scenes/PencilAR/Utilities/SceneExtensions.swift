@@ -1,9 +1,9 @@
 /*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-Configures the scene.
-*/
+ See LICENSE folder for this sample’s licensing information.
+ 
+ Abstract:
+ Configures the scene.
+ */
 
 import ARKit
 import Foundation

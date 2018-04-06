@@ -30,8 +30,8 @@ extension ARCamera.TrackingState {
                 return "TRACKING LIMITED\nNot enough surface detail"
             case .initializing:
                 return "Initializing AR Session"
-            case .relocalizing:
-                return String()
+            default:
+                return "Default"
             }
         }
     }
@@ -93,13 +93,13 @@ class TextManager {
                 // about 200 words per minute and the average English word is 5 characters
                 // long. So 1000 characters per minute / 60 = 15 characters per second.
                 // We limit the duration to a range of 1-10 seconds.
-                let charCount = text.count
+                let charCount = text.characters.count
                 let displayDuration: TimeInterval = min(10, Double(charCount) / 15.0 + 1.0)
                 self.messageHideTimer = Timer.scheduledTimer(withTimeInterval: displayDuration,
                                                              repeats: false,
-                                                             block: { [weak self] (_) in
-                                                                 self?.showHideMessage(hide: true, animated: true)
-                                                             })
+                                                             block: { [weak self] ( _ ) in
+                                                                self?.showHideMessage(hide: true, animated: true)
+                })
             }
         }
     }
@@ -112,14 +112,10 @@ class TextManager {
 
         var timer: Timer?
         switch messageType {
-        case .contentPlacement:
-            timer = contentPlacementMessageTimer
-        case .focusSquare:
-            timer = focusSquareMessageTimer
-        case .planeEstimation:
-            timer = planeEstimationMessageTimer
-        case .trackingStateEscalation:
-            timer = trackingStateFeedbackEscalationTimer
+        case .contentPlacement: timer = contentPlacementMessageTimer
+        case .focusSquare: timer = focusSquareMessageTimer
+        case .planeEstimation: timer = planeEstimationMessageTimer
+        case .trackingStateEscalation: timer = trackingStateFeedbackEscalationTimer
         }
 
         if timer != nil {
@@ -128,34 +124,26 @@ class TextManager {
         }
         timer = Timer.scheduledTimer(withTimeInterval: seconds,
                                      repeats: false,
-                                     block: { [weak self] (_) in
-                                         self?.showMessage(text)
-                                         timer?.invalidate()
-                                         timer = nil
-                                     })
+                                     block: { [weak self] ( _ ) in
+                                        self?.showMessage(text)
+                                        timer?.invalidate()
+                                        timer = nil
+        })
         switch messageType {
-        case .contentPlacement:
-            contentPlacementMessageTimer = timer
-        case .focusSquare:
-            focusSquareMessageTimer = timer
-        case .planeEstimation:
-            planeEstimationMessageTimer = timer
-        case .trackingStateEscalation:
-            trackingStateFeedbackEscalationTimer = timer
+        case .contentPlacement: contentPlacementMessageTimer = timer
+        case .focusSquare: focusSquareMessageTimer = timer
+        case .planeEstimation: planeEstimationMessageTimer = timer
+        case .trackingStateEscalation: trackingStateFeedbackEscalationTimer = timer
         }
     }
 
     func cancelScheduledMessage(forType messageType: MessageType) {
         var timer: Timer?
         switch messageType {
-        case .contentPlacement:
-            timer = contentPlacementMessageTimer
-        case .focusSquare:
-            timer = focusSquareMessageTimer
-        case .planeEstimation:
-            timer = planeEstimationMessageTimer
-        case .trackingStateEscalation:
-            timer = trackingStateFeedbackEscalationTimer
+        case .contentPlacement: timer = contentPlacementMessageTimer
+        case .focusSquare: timer = focusSquareMessageTimer
+        case .planeEstimation: timer = planeEstimationMessageTimer
+        case .trackingStateEscalation: timer = trackingStateFeedbackEscalationTimer
         }
 
         if timer != nil {
@@ -182,7 +170,8 @@ class TextManager {
             self.trackingStateFeedbackEscalationTimer!.invalidate()
             self.trackingStateFeedbackEscalationTimer = nil
         }
-        let timer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false, block: { _ in
+
+        self.trackingStateFeedbackEscalationTimer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false, block: { _ in
             self.trackingStateFeedbackEscalationTimer?.invalidate()
             self.trackingStateFeedbackEscalationTimer = nil
 
@@ -192,8 +181,6 @@ class TextManager {
                 self.showMessage(trackingState.presentationString, autoHide: false)
             }
         })
-
-        self.trackingStateFeedbackEscalationTimer = timer
     }
 
     // MARK: - Alert View
@@ -249,9 +236,9 @@ class TextManager {
                        delay: 0,
                        options: [.allowUserInteraction, .beginFromCurrentState],
                        animations: {
-                           self.viewController.messageLabel.isHidden = hide
-                           self.updateMessagePanelVisibility()
-                       }, completion: nil)
+                        self.viewController.messageLabel.isHidden = hide
+                        self.updateMessagePanelVisibility()
+        }, completion: nil)
     }
 
     private func updateMessagePanelVisibility() {

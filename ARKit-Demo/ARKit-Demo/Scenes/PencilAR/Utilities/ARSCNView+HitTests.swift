@@ -1,9 +1,9 @@
 /*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-File info
-*/
+ See LICENSE folder for this sample’s licensing information.
+ 
+ Abstract:
+ File info
+ */
 
 import ARKit
 
@@ -58,8 +58,7 @@ extension ARSCNView {
 
         // Return the intersection of a ray from the camera through the screen position with a horizontal plane
         // at height (Y axis).
-        return rayIntersectionWithHorizontalPlane(rayOrigin: ray.origin,
-                                                  direction: ray.direction, planeY: pointOnPlane.y)
+        return rayIntersectionWithHorizontalPlane(rayOrigin: ray.origin, direction: ray.direction, planeY: pointOnPlane.y)
     }
 
     func hitTestWithFeatures(_ point: CGPoint, coneOpeningAngleInDegrees: Float,

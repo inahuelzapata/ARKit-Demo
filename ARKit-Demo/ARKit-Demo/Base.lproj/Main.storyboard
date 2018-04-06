@@ -210,22 +210,45 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="oOY-M1-f92"/>
                                 </constraints>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EbV-tn-GXP" userLabel="Restart Experience Button Icon">
-                                <rect key="frame" x="340" y="40" width="20" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="2N6-DP-z5f"/>
-                                    <constraint firstAttribute="height" constant="23" id="bW3-Wn-qBb"/>
-                                </constraints>
-                                <state key="normal" image="restart"/>
-                                <state key="selected" image="restartPressed"/>
-                                <state key="highlighted" image="restartPressed"/>
                                 <connections>
-                                    <action selector="restartExperience:" destination="6GO-hy-JXX" eventType="touchUpInside" id="PXh-zr-b5K"/>
+                                    <action selector="restartExperience:" destination="6GO-hy-JXX" eventType="touchUpInside" id="fWv-Uu-TC6"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="V9a-B7-aGc">
+                                <rect key="frame" x="0.0" y="599" width="375" height="48"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ed2-v1-7AF" userLabel="Draw Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="202" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <state key="normal" title=" Draw" image="shutter">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <state key="selected" image="shutterPressed"/>
+                                        <state key="highlighted" image="shutterPressed"/>
+                                        <connections>
+                                            <action selector="drawAction" destination="6GO-hy-JXX" eventType="touchUpInside" id="xsq-i9-qWB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvi-g2-s06" userLabel="3D Button">
+                                        <rect key="frame" x="202" y="0.0" width="173" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <state key="normal" title=" 3D!" image="shutter">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="shutterPressed"/>
+                                        <state key="highlighted" image="shutterPressed"/>
+                                        <connections>
+                                            <action selector="threeDMagicAction:" destination="6GO-hy-JXX" eventType="touchUpInside" id="umX-g7-Hmg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="4Nr-Ju-5wp"/>
+                                </constraints>
+                            </stackView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="Cje-hn-RdD" userLabel="Message Panel">
-                                <rect key="frame" x="15" y="15" width="310" height="36"/>
+                                <rect key="frame" x="16" y="54" width="310" height="36"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="UrO-v2-dJv">
                                     <rect key="frame" x="0.0" y="0.0" width="310" height="36"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -270,53 +293,30 @@
                                 </constraints>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="V9a-B7-aGc">
-                                <rect key="frame" x="0.0" y="599" width="375" height="48"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ed2-v1-7AF" userLabel="Draw Button">
-                                        <rect key="frame" x="0.0" y="0.0" width="202" height="48"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                        <state key="normal" title=" Draw" image="shutter">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <state key="selected" image="shutterPressed"/>
-                                        <state key="highlighted" image="shutterPressed"/>
-                                        <connections>
-                                            <action selector="drawAction" destination="6GO-hy-JXX" eventType="touchUpInside" id="x4f-qL-xsh"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvi-g2-s06" userLabel="3D Button">
-                                        <rect key="frame" x="202" y="0.0" width="173" height="48"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                        <state key="normal" title=" 3D!" image="shutter">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="selected" image="shutterPressed"/>
-                                        <state key="highlighted" image="shutterPressed"/>
-                                        <connections>
-                                            <action selector="threeDMagicAction:" destination="6GO-hy-JXX" eventType="touchUpInside" id="ZT2-Yf-dgx"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EbV-tn-GXP" userLabel="Restart Experience Button Icon">
+                                <rect key="frame" x="339" y="54" width="20" height="23"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="4Nr-Ju-5wp"/>
+                                    <constraint firstAttribute="width" constant="20" id="2N6-DP-z5f"/>
+                                    <constraint firstAttribute="height" constant="23" id="bW3-Wn-qBb"/>
                                 </constraints>
-                            </stackView>
+                                <state key="normal" image="restart"/>
+                                <state key="selected" image="restartPressed"/>
+                                <state key="highlighted" image="restartPressed"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="EbV-tn-GXP" firstAttribute="leading" secondItem="Cje-hn-RdD" secondAttribute="trailing" constant="15" id="0Om-nd-5au"/>
-                            <constraint firstItem="Cje-hn-RdD" firstAttribute="top" secondItem="aCJ-EX-kFu" secondAttribute="top" constant="15" id="1Qs-Cx-eym"/>
+                            <constraint firstItem="EbV-tn-GXP" firstAttribute="leading" secondItem="Cje-hn-RdD" secondAttribute="trailing" constant="13" id="0Om-nd-5au"/>
+                            <constraint firstItem="Cje-hn-RdD" firstAttribute="top" secondItem="aCJ-EX-kFu" secondAttribute="top" constant="54" id="1Qs-Cx-eym"/>
                             <constraint firstItem="V9a-B7-aGc" firstAttribute="leading" secondItem="q28-PF-b2j" secondAttribute="leading" id="3kf-Qo-srY"/>
                             <constraint firstItem="q28-PF-b2j" firstAttribute="trailing" secondItem="aCJ-EX-kFu" secondAttribute="trailing" id="BGH-Lq-Io3"/>
                             <constraint firstItem="M0T-vN-VUg" firstAttribute="top" secondItem="aCJ-EX-kFu" secondAttribute="top" id="BLb-Wk-tUa"/>
-                            <constraint firstItem="Cje-hn-RdD" firstAttribute="leading" secondItem="aCJ-EX-kFu" secondAttribute="leading" constant="15" id="GHN-yX-OqS"/>
+                            <constraint firstItem="Cje-hn-RdD" firstAttribute="leading" secondItem="aCJ-EX-kFu" secondAttribute="leading" constant="16" id="GHN-yX-OqS"/>
                             <constraint firstItem="q28-PF-b2j" firstAttribute="bottom" secondItem="V9a-B7-aGc" secondAttribute="bottom" constant="20" id="XW0-53-2ZE"/>
                             <constraint firstItem="aCJ-EX-kFu" firstAttribute="top" secondItem="qcg-GK-EeB" secondAttribute="top" id="ZTd-lk-gPL"/>
-                            <constraint firstItem="EbV-tn-GXP" firstAttribute="top" secondItem="q28-PF-b2j" secondAttribute="top" constant="20" id="eO3-Yl-NyE"/>
+                            <constraint firstItem="EbV-tn-GXP" firstAttribute="top" secondItem="q28-PF-b2j" secondAttribute="top" constant="34" id="eO3-Yl-NyE"/>
                             <constraint firstItem="aCJ-EX-kFu" firstAttribute="leading" secondItem="q28-PF-b2j" secondAttribute="leading" id="gVK-hq-RBt"/>
-                            <constraint firstItem="EbV-tn-GXP" firstAttribute="trailing" secondItem="aCJ-EX-kFu" secondAttribute="trailing" constant="-15" id="ibv-fI-CW2"/>
+                            <constraint firstItem="EbV-tn-GXP" firstAttribute="trailing" secondItem="aCJ-EX-kFu" secondAttribute="trailing" constant="-16" id="ibv-fI-CW2"/>
                             <constraint firstAttribute="bottom" secondItem="aCJ-EX-kFu" secondAttribute="bottom" id="nSg-2C-2fJ"/>
                             <constraint firstItem="M0T-vN-VUg" firstAttribute="trailing" secondItem="aCJ-EX-kFu" secondAttribute="trailing" id="peL-mm-uAq"/>
                             <constraint firstItem="q28-PF-b2j" firstAttribute="trailing" secondItem="V9a-B7-aGc" secondAttribute="trailing" id="zab-Po-qw9"/>
@@ -325,12 +325,12 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="drawButton" destination="ed2-v1-7AF" id="3PC-lm-9yh"/>
-                        <outlet property="messageLabel" destination="xY4-Oh-ilv" id="loM-iQ-pgc"/>
-                        <outlet property="messagePanel" destination="BfX-G0-0kX" id="ZQI-Ze-SQF"/>
-                        <outlet property="restartExperienceButton" destination="EbV-tn-GXP" id="VcF-su-OTi"/>
-                        <outlet property="sceneView" destination="aCJ-EX-kFu" id="Phd-mU-0bX"/>
-                        <outlet property="threeDMagicButton" destination="qvi-g2-s06" id="Z7P-DJ-Tzo"/>
+                        <outlet property="drawButton" destination="ed2-v1-7AF" id="5da-JZ-Dme"/>
+                        <outlet property="messageLabel" destination="xY4-Oh-ilv" id="C7q-eF-Rkh"/>
+                        <outlet property="messagePanel" destination="Cje-hn-RdD" id="OnX-Jq-fMg"/>
+                        <outlet property="restartExperienceButton" destination="M0T-vN-VUg" id="Gg2-iu-C0P"/>
+                        <outlet property="sceneView" destination="aCJ-EX-kFu" id="gUh-Qw-F8S"/>
+                        <outlet property="threeDMagicButton" destination="qvi-g2-s06" id="5wf-b1-22Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U1y-mx-RDP" sceneMemberID="firstResponder"/>

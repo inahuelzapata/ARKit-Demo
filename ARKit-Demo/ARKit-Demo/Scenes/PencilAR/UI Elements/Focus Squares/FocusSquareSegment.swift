@@ -26,25 +26,19 @@ extension FocusSquare {
         case bottomRight // s6, s8
         case bottomLeft // s5, s7
     }
-
     enum Alignment {
         case horizontal // s1, s2, s7, s8
         case vertical // s3, s4, s5, s6
     }
-
     enum Direction {
         case up, down, left, right
 
         var reversed: Direction {
             switch self {
-            case .up:
-                return .down
-            case .down:
-                return .up
-            case .left:
-                return .right
-            case .right:
-                return .left
+            case .up:   return .down
+            case .down: return .up
+            case .left:  return .right
+            case .right: return .left
             }
         }
     }
@@ -57,7 +51,7 @@ extension FocusSquare {
         static let thickness: Float = 0.018
 
         /// Length of the focus square lines in m.
-        static let length: Float = 0.5 // segment length
+        static let length: Float = 0.5  // segment length
 
         /// Side length of the focus square segments when it is open (w.r.t. to a 1x1 square).
         static let openLength: Float = 0.2
@@ -96,30 +90,19 @@ extension FocusSquare {
 
         var openDirection: Direction {
             switch (corner, alignment) {
-            case (.topLeft, .horizontal):
-                return .left
-            case (.topLeft, .vertical):
-                return .up
-            case (.topRight, .horizontal):
-                return .right
-            case (.topRight, .vertical):
-                return .up
-            case (.bottomLeft, .horizontal):
-                return .left
-            case (.bottomLeft, .vertical):
-                return .down
-            case (.bottomRight, .horizontal):
-                return .right
-            case (.bottomRight, .vertical):
-                return .down
+            case (.topLeft, .horizontal):   return .left
+            case (.topLeft, .vertical):     return .up
+            case (.topRight, .horizontal):   return .right
+            case (.topRight, .vertical):     return .up
+            case (.bottomLeft, .horizontal):   return .left
+            case (.bottomLeft, .vertical):     return .down
+            case (.bottomRight, .horizontal):   return .right
+            case (.bottomRight, .vertical):     return .down
             }
         }
 
         func open() {
-            guard let plane = self.geometry as? SCNPlane else {
-                return
-
-            }
+            guard let plane = self.geometry as? SCNPlane else { return }
             let direction = openDirection
 
             if alignment == .horizontal {
@@ -130,21 +113,15 @@ extension FocusSquare {
 
             let offset = FocusSquare.Segment.length / 2 - FocusSquare.Segment.openLength / 2
             switch direction {
-            case .left:
-                self.position.x -= offset
-            case .right:
-                self.position.x += offset
-            case .up:
-                self.position.y -= offset
-            case .down:
-                self.position.y += offset
+            case .left:     self.position.x -= offset
+            case .right:    self.position.x += offset
+            case .up:       self.position.y -= offset
+            case .down:     self.position.y += offset
             }
         }
 
         func close() {
-            guard let plane = self.geometry as? SCNPlane else {
-                return
-            }
+            guard let plane = self.geometry as? SCNPlane else { return }
             let direction = openDirection.reversed
 
             let oldLength: Float
@@ -158,16 +135,11 @@ extension FocusSquare {
 
             let offset = FocusSquare.Segment.length / 2 - oldLength / 2
             switch direction {
-            case .left:
-                self.position.x -= offset
-            case .right:
-                self.position.x += offset
-            case .up:
-                self.position.y -= offset
-            case .down:
-                self.position.y += offset
+            case .left:     self.position.x -= offset
+            case .right:    self.position.x += offset
+            case .up:       self.position.y -= offset
+            case .down:     self.position.y += offset
             }
         }
-
     }
 }

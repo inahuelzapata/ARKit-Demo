@@ -1,9 +1,9 @@
 /*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-Utility functions and type extensions used throughout the projects.
-*/
+ See LICENSE folder for this sample’s licensing information.
+ 
+ Abstract:
+ Utility functions and type extensions used throughout the projects.
+ */
 
 import ARKit
 import Foundation
@@ -35,7 +35,7 @@ extension Array where Iterator.Element == float3 {
     }
 }
 
-extension RangeReplaceableCollection {
+extension RangeReplaceableCollection where IndexDistance == Int {
     mutating func keepLast(_ elementsToKeep: Int) {
         if count > elementsToKeep {
             self.removeFirst(count - elementsToKeep)
@@ -99,13 +99,11 @@ extension SCNMaterial {
 extension CGPoint {
 
     init(_ size: CGSize) {
-        self.init()
         self.x = size.width
         self.y = size.height
     }
 
     init(_ vector: SCNVector3) {
-        self.init()
         self.x = CGFloat(vector.x)
         self.y = CGFloat(vector.y)
     }
@@ -130,11 +128,11 @@ extension CGPoint {
     }
 
     static func += (left: inout CGPoint, right: CGPoint) {
-        left += right
+        left = left + right
     }
 
     static func -= (left: inout CGPoint, right: CGPoint) {
-        left -= right
+        left = left - right
     }
 
     static func / (left: CGPoint, right: CGFloat) -> CGPoint {
@@ -146,11 +144,11 @@ extension CGPoint {
     }
 
     static func /= (left: inout CGPoint, right: CGFloat) {
-        left /= right
+        left = left / right
     }
 
     static func *= (left: inout CGPoint, right: CGFloat) {
-        left *= right
+        left = left * right
     }
 }
 
@@ -158,7 +156,6 @@ extension CGPoint {
 
 extension CGSize {
     init(_ point: CGPoint) {
-        self.init()
         self.width = point.x
         self.height = point.y
     }
@@ -172,11 +169,11 @@ extension CGSize {
     }
 
     static func += (left: inout CGSize, right: CGSize) {
-        left += right
+        left = left + right
     }
 
     static func -= (left: inout CGSize, right: CGSize) {
-        left -= right
+        left = left - right
     }
 
     static func / (left: CGSize, right: CGFloat) -> CGSize {
@@ -188,11 +185,11 @@ extension CGSize {
     }
 
     static func /= (left: inout CGSize, right: CGFloat) {
-        left /= right
+        left = left / right
     }
 
     static func *= (left: inout CGSize, right: CGFloat) {
-        left *= right
+        left = left * right
     }
 }
 

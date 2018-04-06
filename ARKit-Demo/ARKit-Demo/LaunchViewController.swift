@@ -11,10 +11,10 @@ import UIKit
 
 class LaunchViewController: UIViewController {
     @IBOutlet var textLabel: UILabel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         textLabel.text = "Augmented Reality"
     }
 }
